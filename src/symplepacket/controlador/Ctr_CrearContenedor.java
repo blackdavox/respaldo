@@ -61,7 +61,7 @@ public class Ctr_CrearContenedor {
        
        
 }
-              public Ctr_Modelotabla modeloTipoComp (){
+        public Ctr_Modelotabla modeloTipoComp (){
           mod = null;
           String[]columnas= new String[1];
 
@@ -69,8 +69,6 @@ public class Ctr_CrearContenedor {
        
           mod = new Ctr_Modelotabla(columnas);
             return mod;
-       
-       
-}
+        }
 
 }

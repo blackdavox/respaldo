@@ -6,12 +6,12 @@
             <file>file:/Y:/PROYECTOS/SymplePacket/src/symplepacket/controlador/Ctr_LlenarObjetos.java</file>
             <file>file:/Y:/PROYECTOS/SymplePacket/src/symplepacket/controlador/Ctr_CrearContenedor.java</file>
             <file>file:/Y:/PROYECTOS/SymplePacket/src/symplepacket/frames/Inventario.java</file>
+            <file>file:/Y:/PROYECTOS/SymplePacket/src/symplepacket/frames/SymplyPacket.java</file>
             <file>file:/Y:/PROYECTOS/SymplePacket/src/symplepacket/frames/clientes.java</file>
-            <file>file:/Y:/PROYECTOS/SymplePacket/src/symplepacket/Objetos/Obj_Tipo_Comprobante.java</file>
-            <file>file:/Y:/PROYECTOS/SymplePacket/src/symplepacket/frames/inicio.java</file>
+            <file>file:/Y:/PROYECTOS/SymplePacket/src/symplepacket/controlador/Ctr_MetodosGeneral.java</file>
+            <file>file:/Y:/PROYECTOS/SymplePacket/src/symplepacket/controlador/conexion.java</file>
             <file>file:/Y:/PROYECTOS/SymplePacket/src/symplepacket/frames/Carrito.java</file>
             <file>file:/Y:/PROYECTOS/SymplePacket/src/symplepacket/frames/parametrizar.java</file>
-            <file>file:/Y:/PROYECTOS/SymplePacket/src/symplepacket/Objetos/Obj_Clase_Producto.java</file>
         </group>
     </open-files>
 </project-private>

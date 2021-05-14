@@ -5,47 +5,16 @@
  */
 package symplepacket.frames;
 
+import java.sql.CallableStatement;
 import symplepacket.controlador.conexion;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
-
-import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.FontFactory;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Rectangle;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
-import java.awt.Desktop;
-import java.awt.Font;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.net.URL;
-import java.sql.CallableStatement;
-import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Cell;
-import javafx.scene.control.Label;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import symplepacket.Objetos.Obj_Tipo_Comprobante;
-import javax.swing.table.TableColumn; 
 import symplepacket.Objetos.Obj_Calculos;
 import symplepacket.controlador.Ctr_CrearContenedor;
 import symplepacket.controlador.Ctr_LlenarObjetos;
@@ -53,8 +22,6 @@ import symplepacket.controlador.Ctr_Modelotabla;
 import symplepacket.Objetos.Obj_Carrito;
 import symplepacket.Objetos.Obj_Clientes;
 import symplepacket.Objetos.Obj_ComprobanteVenta;
-import symplepacket.Objetos.Obj_Inventario;
-
 
 /**
  *
@@ -80,20 +47,16 @@ public final class Carrito extends javax.swing.JFrame {
         public Carrito() {
         
         initComponents();
-        
-      
-        
         iniciar();
         
     }
         
         private void iniciar(){
-            carrito= cc.modeloCarrito();
-            tp=             lt.GetTipoComp();
+            carrito=        cc.modeloCarrito();
+            tp=             lt.GetTipoComp("0","0");
             auxcalculos=    lt.llenarObjCalculos();
             cr=             lt.GetCarrito();
-            
-            
+                       
             cbox = new DefaultComboBoxModel(tp);
             tipo_cpb.setModel(cbox);
             
@@ -125,7 +88,8 @@ public final class Carrito extends javax.swing.JFrame {
            System.out.print(comprobante.GetTipoId()+""+ comprobante.GetClieId());
              
                String rtn = "create_cv"; 
-             try (CallableStatement statement = cn.prepareCall("{call "+rtn+"(?,?,?)}")) {
+             try (
+                 CallableStatement statement = cn.prepareCall("{call "+rtn+"(?,?,?)}")) {
                  statement.setInt(1, comprobante.GetTipoId());
                  statement.setInt(2, comprobante.GetClieId());
                  statement.setDouble(3, prt.GetIva());

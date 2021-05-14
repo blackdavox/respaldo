@@ -27,7 +27,8 @@ public class Obj_Inventario {
     public String GetMod(){return modelo;}
     public int GetCan(){ return cantidad;}
     public String GetPre(){return precio;}
-    
+
+   
 
     public Obj_Inventario (int Id,String cla,String mar,String nom,String mod,int can, String pre ) {
        id=Id;

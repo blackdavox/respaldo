@@ -36,13 +36,13 @@ public final class Inventario extends javax.swing.JFrame {
        
     public Inventario() {
         initComponents();
-        iniciar("","");
+        iniciar("0","0");
         
     }
 
     void iniciar(String prt, String txt){
         inventario=cc.modeloProducto();
-        inv=mg.buscar_producto(prt, txt);
+        inv = mg.buscar_producto(prt, txt);
              for(Obj_Inventario c :inv){
                  inventario.SetObjeto(c);
                }
@@ -60,11 +60,8 @@ public final class Inventario extends javax.swing.JFrame {
      void BuscarDatos(){
          String bus,op;
          bus=txtbus.getText();
-         op=cbreg.getSelectedItem().toString();
-                 
-            iniciar(op, bus);
-         
-         
+         op=cbreg.getSelectedItem().toString();    
+         iniciar(op, bus);
      }
      void addCarrito(){ 
             Obj_Inventario auxInventario;
@@ -243,7 +240,7 @@ public final class Inventario extends javax.swing.JFrame {
     private void carritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carritoActionPerformed
 
         addCarrito();  
-        iniciar(null,null);
+        iniciar("0","0");
     }//GEN-LAST:event_carritoActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

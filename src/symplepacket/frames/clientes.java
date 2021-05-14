@@ -5,44 +5,29 @@
  */
 package symplepacket.frames;
 
-import symplepacket.controlador.conexion;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
+
 import javax.swing.table.TableColumnModel;
 import symplepacket.controlador.Ctr_CrearContenedor;
-import symplepacket.controlador.Ctr_LlenarObjetos;
 import symplepacket.controlador.Ctr_Modelotabla;
 import symplepacket.Objetos.Obj_Clientes;
-import symplepacket.Objetos.Obj_Tipo_Comprobante;
+import symplepacket.controlador.Ctr_MetodosGeneral;
 
-/**
- *
- * @author blackdavo
- */
+
 public final class clientes extends javax.swing.JFrame {
 
-    Ctr_LlenarObjetos lt= new Ctr_LlenarObjetos();
+    Ctr_MetodosGeneral mg= new Ctr_MetodosGeneral();
     Ctr_CrearContenedor ct= new Ctr_CrearContenedor();
     Obj_Clientes dc[];
     Ctr_Modelotabla cliente;
     
     public clientes() {
         initComponents();
-        iniciar();
+        iniciar("0","0");
     }
 
-             void iniciar() {     
+       void iniciar(String prt, String txt) {     
             cliente= ct.modelocliente();
-            dc=lt.Getclientes();
+            dc=mg.buscar_cliente(prt,txt);
              for(Obj_Clientes c :dc){
                  cliente.SetObjeto(c);
                }
@@ -58,8 +43,14 @@ public final class clientes extends javax.swing.JFrame {
             
             
         }
+        void BuscarDatos(){
+         String bus,op;
+         bus=txtbusclie.getText();
+         op=cbopclie.getSelectedItem().toString();    
+         iniciar(op, bus);
+     }
         
-         void selectcliente(){
+       void selectcliente(){
       
                  Obj_Clientes objsc = (Obj_Clientes)cliente.GetObjeto(tablacliente.getSelectedRow());
                  Carrito cr = new Carrito();
@@ -75,8 +66,8 @@ public final class clientes extends javax.swing.JFrame {
         SELECCIONAR = new javax.swing.JMenuItem();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablacliente = new javax.swing.JTable();
-        txtbus = new javax.swing.JTextField();
-        cbreg = new javax.swing.JComboBox<>();
+        txtbusclie = new javax.swing.JTextField();
+        cbopclie = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -108,9 +99,14 @@ public final class clientes extends javax.swing.JFrame {
         tablacliente.setComponentPopupMenu(clickderecho);
         jScrollPane2.setViewportView(tablacliente);
 
-        cbreg.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DOCUMENTO", "NOMBRE", "APELLIDO", "CODIGO", " " }));
+        cbopclie.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DOCUMENTO", "NOMBRE", "APELLIDO", "CODIGO", " " }));
 
         jButton1.setText("BUSCAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("CONSULTA CLIENTES");
@@ -120,17 +116,17 @@ public final class clientes extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(88, Short.MAX_VALUE)
-                .addComponent(cbreg, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txtbus, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(19, 19, 19)
+                .addComponent(cbopclie, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(txtbusclie, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(67, 67, 67))
             .addGroup(layout.createSequentialGroup()
                 .addGap(272, 272, 272)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(344, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2)
@@ -142,11 +138,10 @@ public final class clientes extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cbreg, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtbus, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtbusclie, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbopclie, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
@@ -158,6 +153,10 @@ public final class clientes extends javax.swing.JFrame {
     private void SELECCIONARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SELECCIONARActionPerformed
        selectcliente();
     }//GEN-LAST:event_SELECCIONARActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        BuscarDatos();
+    }//GEN-LAST:event_jButton1ActionPerformed
      
     
 
@@ -196,12 +195,12 @@ public final class clientes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem SELECCIONAR;
-    private javax.swing.JComboBox<String> cbreg;
+    private javax.swing.JComboBox<String> cbopclie;
     private javax.swing.JPopupMenu clickderecho;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tablacliente;
-    private javax.swing.JTextField txtbus;
+    private javax.swing.JTextField txtbusclie;
     // End of variables declaration//GEN-END:variables
 }
