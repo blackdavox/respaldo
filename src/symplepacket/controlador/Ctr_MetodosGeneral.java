@@ -84,4 +84,6 @@ public class Ctr_MetodosGeneral {
          auxcp=lt.GetClaseProducto(campo, valor);
          return auxcp;
     }
+    
+    
 }
